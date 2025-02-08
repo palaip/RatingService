@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.rating.ratingservice.pojo.Rating;
 import com.example.rating.ratingservice.service.RatingService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/rating-api")
+@Slf4j
 public class RatingController {
 
 	@Autowired
@@ -25,7 +28,9 @@ public class RatingController {
 	@PostMapping("/saveRating")
 	public ResponseEntity<Rating> createRating(@RequestBody Rating rating) {
 
+		log.info("This is post createRating method");
 		Rating ratingObj = ratingService.createRating(rating);
+		
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(ratingObj);
 
